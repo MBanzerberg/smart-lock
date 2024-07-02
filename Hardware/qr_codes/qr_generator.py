@@ -1,6 +1,6 @@
 import segno
 
-with open('D:/Users/barte/PycharmProjects/first_project/asymetric_keys/encrypted.message', 'rb') as file:
+with open('C:/Users/barte/Desktop/Inzynierka/SmartLock/Hardware/main/encrypted_message.txt', 'rb') as file:
     my_file = file.read()
 
 qrcode = segno.make_qr(my_file)

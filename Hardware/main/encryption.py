@@ -1,5 +1,6 @@
 import rsa
 import jwt
+import base64
 
 id = 0
 algorithm = "HS256"
@@ -11,10 +12,9 @@ with open("../asymetric_keys/keys/public.pem", "rb") as file:
 with open("message.txt", "rb") as message_file:
     message = message_file.read()
 
-encrypted_message = rsa.encrypt(message, public_key)
-#print(encrypted_message)
-
-encoded = jwt.encode({id: str(encrypted_message)}, secret, algorithm=algorithm)
+encoded = jwt.encode({id: str(message)}, secret, algorithm=algorithm)
 print(encoded)
 
-open("encrypted_message.txt", "w").write(encoded)
+encrypted_message = rsa.encrypt(encoded.encode('utf-8'), public_key)
+
+open("encrypted_message.txt", "wb").write(base64.b64encode(encrypted_message))
