@@ -7,7 +7,6 @@ import jwt
 id = 0
 algorithm = "HS256"
 secret = "bmil"
-time_exp = datetime.timedelta(seconds=45)
 
 with open("../asymetric_keys/keys/private.pem", "rb") as file:
     private_key = rsa.PrivateKey.load_pkcs1(file.read())

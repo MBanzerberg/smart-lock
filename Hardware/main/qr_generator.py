@@ -10,5 +10,3 @@ qrcode.save("../qr_codes/my_hello_qr.png",
             #light="lightblue",
             #dark="darkblue",
             #data_dark="red")
-
-
