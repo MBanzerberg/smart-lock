@@ -1,22 +1,20 @@
+import json
 import rsa
-import jwt
 import base64
 from datetime import datetime, timedelta
 
-id = 0
-algorithm = "HS256"
-secret = "bmil"
-payload = {"user_id": 0, "exp": datetime.utcnow() + timedelta(minutes=2)}
+data = {
+    "id": 0,
+    "expire_date": (datetime.utcnow() + timedelta(minutes=1)).isoformat()
+}
 
 with open("keys/public.pem", "rb") as file:
     public_key = rsa.PublicKey.load_pkcs1(file.read())
 
-#with open("message.txt", "rb") as message_file:
- #   message = message_file.read()
+json_data = json.dumps(data)
 
-encoded = jwt.encode(payload, secret, algorithm=algorithm)
-print(encoded)
+encrypted_message = rsa.encrypt(json_data.encode('utf-8'), public_key)
 
-encrypted_message = rsa.encrypt(encoded.encode('utf-8'), public_key)
+print(encrypted_message)
 
 open("encrypted_message.txt", "wb").write(base64.b64encode(encrypted_message))
