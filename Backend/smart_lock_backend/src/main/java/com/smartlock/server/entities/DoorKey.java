@@ -16,6 +16,6 @@ public class DoorKey {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int keyID;
 
-    @Column(name = "keyValue", length = 100)
+    @Column(name = "keyValue", length = 2000)
     private String keyValue;
 }

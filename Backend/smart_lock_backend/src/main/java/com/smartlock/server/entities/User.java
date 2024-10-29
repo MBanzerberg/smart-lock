@@ -22,4 +22,5 @@ public class User {
 
     @ManyToOne @JoinColumn(name = "passwordId")
     private Password password;
+
 }
